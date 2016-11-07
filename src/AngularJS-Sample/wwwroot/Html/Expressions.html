@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <script src="../lib/angular/angular.js"></script>
+</head>
+<body ng-app="">
+    <h2>Expressions</h2>
+    <div>
+        <h4>Numbers</h4>
+        <div ng-init="quantity=1;cost=5">
+            Quantity: <input type="number" ng-model="quantity" /><br>
+            Cost: <input type="text" ng-model="cost" />
+            <p>Total in dollar: <span ng-bind="quantity * cost"></span></p>
+        </div> 
+        <h4>Strings</h4>
+        <div ng-init="firstName='Girijaa';lastName='Doraiswamy'">
+            First Name: <input type="text" ng-model="firstName"><br>
+            Last Name: <input type="text" ng-model="lastName"><br>
+            <p>Full name is {{ firstName + " " + lastName }}</p>
+        </div> 
+        <h4>Applying CSS style</h4>
+        <div ng-init="myCol='lightblue'">
+            <input style="background-color:{{myCol}}" ng-model="myCol" value="{{myCol}}">
+        </div>
+        <h4>AngularJS Objects</h4>
+        <div ng-init="person={fName:'John',lName:'Doe'}">
+            <p>The name is <span ng-bind="person.fName"></span></p>
+        </div> 
+        <h4>Arrays</h4>
+        <div ng-init="points=[1,15,19,2,40]">
+            <p>The third value is <span ng-bind="points[2]"></span></p>
+        </div> 
+        <div ng-init="videos=[{title:'Asset 1', description:'This is a test'},{title:'Asset 2',description:'Desc 2'}]">
+            <p>The second asset details are <span ng-bind="videos[1].title +' ' + videos[1].description"></span></p>
+        </div>
+    </div>
+</body>
+</html> 

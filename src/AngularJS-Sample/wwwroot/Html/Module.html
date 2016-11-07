@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.0-beta.2/angular-sanitize.js"></script>
+    <style>
+        .sky {
+            color: white;
+            background-color: lightblue;
+            padding: 20px;
+            font-family: "Courier New";
+        }
+
+        .tomato {
+            background-color: coral;
+            padding: 40px;
+            font-family: Verdana;
+        }
+    </style>
+</head>
+<body ng-app="myApp">
+
+    <div ng-controller="myCtrl">
+        Expression: {{ firstName + " " + lastName + " " + myText}} <br />
+        Bind HTML: <span ng-bind-html="myText">TEXT</span> <br />
+        Bind Template: <div ng-bind-template="{{firstName}} {{lastName}} {{myText}}"><p>Text</p></div>
+      
+    </div>
+    <div ng-controller="mySecondCtrl">
+        <h4>Increases count on focus out of textbox using ng-blur</h4>
+        <input ng-blur="count = count + 1" ng-init="count=0" />
+        <h1>{{count}}</h1>
+        <p>Value set in second controller: {{valuefromcontroller2}} .</p>
+    </div>
+    <h4>Directive Template</h4>
+    <div test-directive>
+
+    </div>
+    <h4>ng-class</h4>
+    <select ng-model="home" ng-cloak> <!--Cloak prevents flickering during load. Refer here for more.. 'http://www.w3schools.com/angular/angular_ref_directives.asp' -->
+        <option value="sky">Sky</option>
+        <option value="tomato">Tomato</option>
+    </select>
+
+    <div ng-class="home">
+        <h1>Welcome Home!</h1>
+        <p>I like it!</p>
+    </div>
+    <script>
+
+        var app = angular.module("myApp", ['ngSanitize']); // ngSanitize used for bind html to work
+
+        app.controller("myCtrl", function ($scope) {
+            $scope.firstName = "Girijaa";
+            $scope.lastName = "Doraiswamy";
+            $scope.myText = "<h6>HTML Contents...</h6>";
+        });
+
+        app.controller("mySecondCtrl", function ($scope) {
+            $scope.valuefromcontroller2 = "Hi from second controller";
+        });
+
+        app.directive("testDirective", function () {
+            return {
+                template: "I was made in a directive constructor!"
+            };
+        });
+    </script> 
+
+</body>
+</html> 

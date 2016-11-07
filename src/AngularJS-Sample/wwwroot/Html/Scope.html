@@ -1,0 +1,52 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <script src="../lib/angular/angular.js"></script>
+</head>
+
+<body ng-app="myApp">
+
+    <p> <p>The scope of the controller:</p></p>
+    <h1>{{Scope}}</h1>
+    <h1>{{Value}}</h1>
+    <div ng-controller="myCtrl">
+        <p>The scope of the controller:</p>
+        <h1>{{Scope}}</h1>
+        <div ng-controller="myChildCtrl">
+            <p>The scope of the controller:</p>
+            <h1>{{Scope}}</h1>
+        </div>
+        <p>The scope of the controller:</p>
+        <h1>{{Scope}}</h1>
+        <h1>{{Value}}</h1>
+    </div>
+    <p>The scope of the controller:</p>
+    <h1>{{Scope}}</h1>
+    <h1>{{Value}}</h1>
+    <div ng-controller="mySecondCtrl">
+        <p> <p>The scope of the controller:</p></p>
+        <h1>{{Scope}}</h1>
+    </div>
+    <p> <p>The scope of the controller:</p></p>
+    <h1>{{Scope}}</h1>
+    <h1>{{Value}}</h1>
+    <script>
+var app = angular.module('myApp', []);
+app.run(function($rootScope) {
+    $rootScope.Scope = 'Root';
+    $rootScope.Value = 'Root from run';
+});
+app.controller('myCtrl', function ($scope, $rootScope) {
+    $scope.Scope = "First Controller";
+});
+app.controller('myChildCtrl', function ($scope, $rootScope) {
+    $scope.Scope = "Child Controller";
+    $rootScope.Value = 'Root changed in child';
+});
+app.controller('mySecondCtrl', function ($scope, $rootScope) {
+    $scope.Scope = "Second Controller";
+});
+    </script>
+</body>
+</html>
